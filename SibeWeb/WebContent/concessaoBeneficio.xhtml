@@ -7,6 +7,29 @@
 
 <h:head>
 	<title>Concessão de Benefício</title>
+	
+	<style>
+		.dialog-risco-desprezivel{
+			color: #99ff99;
+			font-weight: bold
+		}
+		.dialog-risco-baixo {
+			color: #ccff66;
+			font-weight: bold
+		}
+		.dialog-risco-medio {
+			color: #ffdb4d;
+			font-weight: bold
+		}
+		.dialog-risco-alto {
+			color: #ff5c33;
+			font-weight: bold
+		}
+		.dialog-risco-cilada-bino {
+			color: #ff1a1a;
+			font-weight: bold
+		}
+	</style>
 </h:head>
 
 <h:body style="margin: 0; padding: 0">
@@ -45,7 +68,8 @@
 		  <p:commandButton value="Consultar Beneficiário" actionListener="#{ConcessaoBeneficioBean.consultarCidadao()}" 
 				update=":frm:panelCidadao" icon="fa fa-male" ajax="false"/>
 		</p:panelGrid>
-			
+		
+		<br/>	
 		<p:panelGrid id="panelCidadao" rendered="#{ConcessaoBeneficioBean.cidadao != null}">
 			<f:facet name="header">
 	        <p:row>
@@ -107,12 +131,14 @@
 	    	 	
 		</p:panelGrid>
 		
-		<p:dialog header="Probabilidade de Fraude" widgetVar="dlgRisco" showEffect="slide" hideEffect="fold" modal="true">
+		<p:dialog header="Probabilidade de Fraude" widgetVar="dlgRisco" showEffect="slide" hideEffect="fold" modal="true"
+		width="65%">
 		    <p:panelGrid id="panelRisco">
 		    		<p:row>
 			         <p:column><p:outputLabel value="Probabilidade: " for="probabilidade"/></p:column>
 			         <p:column>
-			         	<p:outputLabel value="#{ConcessaoBeneficioBean.probabilidadeFraude.percentualProbabilidade / 100.0}" id="probabilidade">
+			         	<p:outputLabel value="#{ConcessaoBeneficioBean.probabilidadeFraude.percentualProbabilidade / 100.0}" 
+			         	id="probabilidade" style="font-weight: bold">
 			         		<f:convertNumber type="percent"/>
 			         	</p:outputLabel>
 			         </p:column>
@@ -120,17 +146,17 @@
 			      
 			    	<p:row>
 			         <p:column><p:outputLabel value="Risco: " for="risco"/></p:column>
-			         <p:column><p:outputLabel id="risco" value="#{ConcessaoBeneficioBean.risco}"/></p:column>
+			         <p:column><p:outputLabel id="risco" value="#{ConcessaoBeneficioBean.risco}"
+			         	styleClass="#{ConcessaoBeneficioBean.styleDialogHeader}"/></p:column>
 			      </p:row>
 		    </p:panelGrid>
 		    
 		    <br/>
 		    
-		    <p:fieldset legend="Critérios Potenciais" id="criteriosFieldSet"  style="text-align: left; width: 75%">
+		    <p:fieldset legend="Critérios Potenciais" id="criteriosFieldSet"  style="text-align: left">
 		    	<p:dataTable id="criteriosTable" 
 		    		var="item" 
-		    		value="#{ConcessaoBeneficioBean.probabilidadeFraude.criterios}"
-		    		style="width: 75%">
+		    		value="#{ConcessaoBeneficioBean.probabilidadeFraude.criterios}">
 					
 					<p:column headerText="Critério">
 						<h:outputText value="#{item.nome}"/>
