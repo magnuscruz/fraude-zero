@@ -1,0 +1,6 @@
+idx|Algoritmo|Score
+1|Suport Vector Machines|0,855959931541327
+2|Random Forest|0,930441457767039
+3|Ada Boost|0,905071478908688
+4|K-Nearest Neighbor|0,935200845665962
+5|DecisionTree|0,92135054867613

@@ -1,0 +1,8 @@
+﻿"estadoCivil", "Estado Civil"
+0, "Desconhecido"
+1, "Solteiro"
+2, "Casado"
+3, "Viúvo" 
+4, "Divorciado" 
+5, "Separado Judic" 
+6, "União Estável"

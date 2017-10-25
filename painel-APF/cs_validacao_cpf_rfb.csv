@@ -1,0 +1,4 @@
+"validacaoCpfReceita","Validação CPF RFB"
+0, "Não Validado RFB"
+1, "Validado RFB"
+2, "Validado CNIS e RFB"
