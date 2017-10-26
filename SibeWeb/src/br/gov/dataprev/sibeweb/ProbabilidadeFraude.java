@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class ProbabilidadeFraude {
 	private String nit;
-	private int percentualProbabilidade;
+	private double percentualProbabilidade;
 	private List<Criterio> criterios = new ArrayList<Criterio>();
 
 	public String getNit() {
@@ -19,11 +19,11 @@ public class ProbabilidadeFraude {
 		this.nit = nit;
 	}
 
-	public int getPercentualProbabilidade() {
+	public double getPercentualProbabilidade() {
 		return percentualProbabilidade;
 	}
 
-	public void setPercentualProbabilidade(int percentualProbabilidade) {
+	public void setPercentualProbabilidade(double percentualProbabilidade) {
 		this.percentualProbabilidade = percentualProbabilidade;
 	}
 

@@ -123,7 +123,7 @@
 	      
 	    	<p:row>
 	         <p:column colspan="2" style="text-align: center">
-	         	<p:commandButton value="Verificar Risco de Fraude" actionListener="#{ConcessaoBeneficioBean.consultarRiscoFraude()}" 
+	         	<p:commandButton value="Analisar Indícios de Irregularidade" actionListener="#{ConcessaoBeneficioBean.consultarRiscoFraude()}" 
 	    				update=":frm:risco :frm:probabilidade :frm:criteriosFieldSet" icon="fa fa-check"
 	    				oncomplete="PF('dlgRisco').show()"/>
 	         </p:column>
@@ -131,13 +131,13 @@
 	    	 	
 		</p:panelGrid>
 		
-		<p:dialog header="Probabilidade de Fraude" widgetVar="dlgRisco" showEffect="slide" hideEffect="fold" modal="true"
+		<p:dialog header="Indícios de Irregularidade" widgetVar="dlgRisco" showEffect="slide" hideEffect="fold" modal="true"
 		width="65%">
 		    <p:panelGrid id="panelRisco">
 		    		<p:row>
 			         <p:column><p:outputLabel value="Probabilidade: " for="probabilidade"/></p:column>
 			         <p:column>
-			         	<p:outputLabel value="#{ConcessaoBeneficioBean.probabilidadeFraude.percentualProbabilidade / 100.0}" 
+			         	<p:outputLabel value="#{ConcessaoBeneficioBean.probabilidadeFraude.percentualProbabilidade}" 
 			         	id="probabilidade" style="font-weight: bold">
 			         		<f:convertNumber type="percent"/>
 			         	</p:outputLabel>

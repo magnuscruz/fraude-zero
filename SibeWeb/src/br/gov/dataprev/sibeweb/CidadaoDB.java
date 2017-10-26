@@ -12,7 +12,7 @@ public class CidadaoDB {
 	
 	static {
 		try {
-			Path path = Paths.get("C:\\Users\\Reinaldo\\Desktop\\Hackathon 2017", "dados_rei.csv");
+			Path path = Paths.get("C:\\Users\\Reinaldo\\Desktop\\Hackathon_2017", "dados_rei.csv");
 			List<String> lines = Files.readAllLines(path);
 			
 			for (String line : lines.subList(1, lines.size())) {

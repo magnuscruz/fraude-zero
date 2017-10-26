@@ -6,6 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.ws.rs.core.MediaType;
 
+import com.google.gson.Gson;
 import com.sun.jersey.api.client.Client;
 
 @ManagedBean(name = "ConcessaoBeneficioBean")
@@ -36,6 +37,16 @@ public class ConcessaoBeneficioBean implements Serializable {
 			.resource("http://127.0.0.1:8080/fraudezero-service/fraudes/beneficio/" + nit)
 			.accept(MediaType.APPLICATION_JSON)
 			.get(ProbabilidadeFraude.class);
+		
+		String probabilidadeFraudeJson = Client
+				.create()
+				.resource("http://localhost:4000/?nit=1253029893")
+				.accept(MediaType.TEXT_PLAIN)
+				.get(String.class);
+		
+		double percent = new Gson().fromJson(probabilidadeFraudeJson, ProbabilidadeFraudeModelo.class).getPercentualProbabilidade();
+		
+		probabilidadeFraude.setPercentualProbabilidade(percent);
 	}
 	
 	public String getRisco() {
@@ -43,17 +54,17 @@ public class ConcessaoBeneficioBean implements Serializable {
 			return "Não calculado";
 		}
 		
-		int percent = probabilidadeFraude.getPercentualProbabilidade();
-		if (percent <= 10) {
+		double percent = probabilidadeFraude.getPercentualProbabilidade();
+		if (percent <= 0.1) {
 			return "Desprezível (menor que 10%)";
 		}
-		if (percent <= 25) {
+		if (percent <= 0.25) {
 			return "Baixo (entre 10% e 25%)";
 		}
-		if (percent <= 50) {
+		if (percent <= 0.5) {
 			return "Médio (entre 25% e 50%)";
 		}
-		if (percent <= 75) {
+		if (percent <= 0.75) {
 			return "Alto (entre 50% e 75%)";
 		}
 		return "É Cilada, Bino! (maior que 75%)";
@@ -64,17 +75,17 @@ public class ConcessaoBeneficioBean implements Serializable {
 			return "";
 		}
 		
-		int percent = probabilidadeFraude.getPercentualProbabilidade();
-		if (percent <= 10) {
+		double percent = probabilidadeFraude.getPercentualProbabilidade();
+		if (percent <= 0.1) {
 			return "dialog-risco-desprezivel";
 		}
-		if (percent <= 25) {
+		if (percent <= 0.25) {
 			return "dialog-risco-baixo";
 		}
-		if (percent <= 50) {
+		if (percent <= 0.5) {
 			return "dialog-risco-medio";
 		}
-		if (percent <= 75) {
+		if (percent <= 0.75) {
 			return "dialog-risco-alto";
 		}
 		return "dialog-risco-cilada-bino";
